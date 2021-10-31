@@ -1,0 +1,28 @@
+{
+  "name": "npm-starter-kit",
+  "version": "0.1.0",
+  "author": "Sunny Hirai <thesunny@gmail.com>",
+  "license": "MIT",
+  "main": ".dist/src/index.js",
+  "types": ".dist/src/index.d.ts",
+  "files": [
+    ".dist/**/*"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "@types/node": "^14.14.3",
+    "jest": "^27.0.6",
+    "ts-jest": "^27.0.3",
+    "type-fest": "^2.5.2",
+    "typescript": "^4.4.3"
+  },
+  "scripts": {
+    "build": "rm -rf ./.dist/ && tsc -p tsconfig.build.json && echo 'Finished Building'",
+    "prepublish": "yarn build && yarn version:patch && echo '\"npm publish --access=public\" to publish to npm'",
+    "start:dev": "next dev -p 5000",
+    "version:patch": "yarn version --patch",
+    "--- test": "#",
+    "test:watch": "jest --watch"
+  }
+}
