@@ -1,0 +1,31 @@
+/**
+ * IMPORTANT:
+ *
+ * This `tsconfig.build.json` file is at the root despite us wanting to keep
+ * the root clean. This is because moving it into a subdirectory requires us
+ * to add a number of configuration options that complicate the file. We
+ * actually didn't get it working yet (but probably could) but the benefit of
+ * a cleaner `tsconfig.build.json` file was higher than the benefit of a
+ * cleaner root directory.
+ */
+{
+  "extends": "./tsconfig",
+  "compilerOptions": {
+    /**
+     * Emit
+     *
+     * Modify `tsconfig.json` to get it to emit.
+     *
+     * - emit `declaration`s
+     * - `noEmit` false so we get output
+     * - emit to `outDir` of `.dist`
+     */
+    "declaration": true,
+    "noEmit": false,
+    "outDir": ".dist"
+  },
+  /**
+   * Exclude `*.test.ts` files because they are not part of the output.
+   */
+  "exclude": ["**/*.test.ts", "**/test/**/*"]
+}
