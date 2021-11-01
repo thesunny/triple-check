@@ -1,3 +1,3 @@
-export function hello() {
-  console.log("Hello World")
+export function add(x: number, y: number) {
+  return x + y
 }

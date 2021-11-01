@@ -53,9 +53,11 @@
     /**
      * Emit
      *
-     * - Don't emit in the regular `tsconfig`. We only do it in `tsconfig.build`
+     * - emit `declaration`s
+     * - emit to `outDir` of `.dist`
      */
-    "noEmit": true,
+    "declaration": true,
+    "outDir": ".dist",
     /**
      * Completeness
      *
@@ -63,6 +65,9 @@
      */
     "skipLibCheck": true
   },
-  "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": ["src"],
+  /**
+   * Exclude `*.test.ts` files anywhere plus any files in a `test` directory
+   */
+  "exclude": ["**/*.test.ts", "**/test/**/*"]
 }
