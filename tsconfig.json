@@ -1,6 +1,15 @@
+/**
+ * IMPORTANT:
+ *
+ * `tsconfig.build.json` extends this file so make sure that changes
+ * here also work with `tsconfig.build.json`.
+ *
+ */
 {
   /**
    * Compiler Options
+   *
+   * NOTE:
    *
    * Ordered and grouped according to
    * https://www.typescriptlang.org/tsconfig
