@@ -1,6 +1,6 @@
 {
   "name": "@thesunny/npm-starter-kit",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Sunny Hirai <thesunny@gmail.com>",
   "license": "MIT",
   "main": ".dist/src/index.js",
@@ -19,8 +19,7 @@
   },
   "scripts": {
     "build": "rm -rf ./.dist/ && tsc -p tsconfig.build.json && echo 'Finished Building'",
-    "prepublish": "yarn build && yarn version:patch && echo '\"npm publish --access=public\" to publish to npm'",
-    "version:patch": "yarn version --patch",
+    "prepublish": "yarn build && yarn version --patch && echo '\"npm publish --access=public\" to publish to npm'",
     "--- test": "#",
     "test:watch": "jest --watch"
   }
