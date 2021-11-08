@@ -1,11 +1,10 @@
-/**
- * IMPORTANT:
- *
- * `tsconfig.build.json` extends this file so make sure that changes
- * here also work with `tsconfig.build.json`.
- *
- */
 {
+  /**
+   * Required or `ts-node` won't use our custom `paths` below
+   */
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  },
   /**
    * Compiler Options
    *
@@ -41,7 +40,7 @@
      * - `target` and `lib` for modern JavaScript
      */
     "target": "esnext",
-    "lib": ["esnext"],
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
     /**
      * Modules
      *
@@ -55,7 +54,14 @@
     "baseUrl": ".",
     "module": "commonjs",
     "moduleResolution": "node",
-    "paths": { "~/*": ["*"] },
+    "paths": {
+      "~/*": ["*"],
+      /**
+       * Required to support `typeRoots`
+       * https://stackoverflow.com/questions/64287224/typeroots-fails-to-find-d-ts-declaration-files-in-project
+       */
+      "*": ["types/*"]
+    },
     "resolveJsonModule": true,
     "rootDir": ".",
     "typeRoots": ["./types", "./node_modules/@types"],
