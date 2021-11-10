@@ -77,17 +77,15 @@ export function useTripleCheck<T>(
     precheck = () => {},
     check = () => {},
     asyncCheck,
-    throttle: wait = 1000,
+    throttle = 1000,
   }: TripleCheckOptions<T>
 ): UseTripleCheckResult {
   const ref = useRef<{
     lastValue: T
     reportPrechecks: boolean
-    // cancelAsyncCheck: () => void
   }>({
     lastValue: value,
     reportPrechecks: false,
-    // cancelAsyncCheck: () => {},
   })
 
   /**
@@ -99,7 +97,12 @@ export function useTripleCheck<T>(
       status: "waiting",
     })
 
-  const throttledAsyncCheck = useCallback(
+  /**
+   * We need to define the debounced async check earlier than its use because
+   * it is a hook. If we define it after the check executes, the hook may
+   * not run causing a React error.
+   */
+  const debouncedAsyncCHeck = useCallback(
     debounce(async (value: T) => {
       if (asyncCheck == null) return
       const asyncResponse = await asyncCheck(value)
@@ -113,7 +116,7 @@ export function useTripleCheck<T>(
       } else {
         setAsyncCheckResponse({ status: "fail", message: asyncResponse })
       }
-    }, wait),
+    }, throttle),
     []
   )
 
@@ -148,13 +151,23 @@ export function useTripleCheck<T>(
   }
 
   /**
+   * If asyncCheck exists, then use the throttled version of it
    */
   if (asyncCheck) {
+    /**
+     * Only run `asyncCheck` if the value has changed as it is expensive
+     */
     if (value !== ref.current.lastValue) {
+      /**
+       * If it's not already in waiting mode, then set it to waiting
+       */
       if (asyncCheckResponse.status !== "waiting") {
         setAsyncCheckResponse({ status: "waiting" })
       }
-      throttledAsyncCheck(value)
+      /**
+       * Execute the throttled version of the `asyncCheck`
+       */
+      debouncedAsyncCHeck(value)
     }
   } else {
     return { status: "pass" }

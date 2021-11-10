@@ -15,4 +15,4 @@ yarn-error.log*
 .next
 
 # TypeScript incremental build used by Next.js should not be in git
-.tsconfig.tsbuildinfo
+tsconfig.tsbuildinfo
