@@ -1,0 +1,6 @@
+{
+  // Sort imports on save
+  "sort-imports.on-save": true,
+  // Set the default sort style
+  "sort-imports.default-sort-style": "module-compact"
+}

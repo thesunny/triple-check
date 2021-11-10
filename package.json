@@ -29,6 +29,8 @@
     "build": "rm -rf ./.dist/ && tsc -p tsconfig.ts-build.json && echo 'Finished Building'",
     "prepublish": "yarn build && yarn version --patch && echo '\"npm publish --access=public\" to publish to npm'",
     "--- test": "#",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "--- start": "#",
+    "start:dev": "next dev"
   }
 }

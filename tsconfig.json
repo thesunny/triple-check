@@ -8,7 +8,10 @@
  * If we use `tsconfig.json` instead of `tsconfig.base.json`, all the other
  * tsconfig that inherit from `tsconfig.json` could be broken by programs that
  * try to modify `tsconfig.json`.
- */ {
+ */{
   "extends": "./tsconfig.base.json",
-  "compilerOptions": {}
+  "compilerOptions": {
+    "allowJs": true,
+    "incremental": true
+  }
 }

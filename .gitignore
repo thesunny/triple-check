@@ -10,3 +10,9 @@ logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Ignore Next build directory
+.next
+
+# TypeScript incremental build used by Next.js should not be in git
+.tsconfig.tsbuildinfo
