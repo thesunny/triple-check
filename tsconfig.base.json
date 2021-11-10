@@ -41,6 +41,7 @@
      */
     "target": "esnext",
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "jsx": "preserve",
     /**
      * Modules
      *
