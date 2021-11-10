@@ -77,7 +77,7 @@ export function useTripleCheck<T>(
     precheck = () => {},
     check = () => {},
     asyncCheck,
-    throttle = 1000,
+    throttle = 250,
   }: TripleCheckOptions<T>
 ): UseTripleCheckResult {
   const ref = useRef<{
