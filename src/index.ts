@@ -47,7 +47,7 @@ function pass(result: string | void): result is void {
   return typeof result === "undefined"
 }
 
-export type CheckValueOptions<T> = {
+export type TripleCheckOptions<T> = {
   precheck?: (value: T) => string | void
   check?: (value: T) => string | void
   asyncCheck?: (value: T) => Promise<string | void>
@@ -78,7 +78,7 @@ export function useTripleCheck<T>(
     check = () => {},
     asyncCheck,
     throttle: wait = 1000,
-  }: CheckValueOptions<T>
+  }: TripleCheckOptions<T>
 ): UseTripleCheckResult {
   const ref = useRef<{
     lastValue: T
@@ -122,9 +122,7 @@ export function useTripleCheck<T>(
    * other checks.
    */
   const checkResult = check(value)
-  console.log(1)
   if (!pass(checkResult)) {
-    console.log(2)
     ref.current.lastValue = value
     return { status: "fail", message: checkResult }
   }

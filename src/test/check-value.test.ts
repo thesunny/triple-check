@@ -1,7 +1,7 @@
-import { CheckValueOptions } from "~/src"
+import { TripleCheckOptions } from "~/src"
 import { tripleCheck } from ".."
 
-export const checkAppNameOptions: CheckValueOptions<string> = {
+export const checkAppNameOptions: TripleCheckOptions<string> = {
   precheck(name) {
     if (name.length < 3) {
       return "Name must be at least 3 characters long"

@@ -55,7 +55,7 @@ export default function () {
         </div>
         <CheckResult result={checkNameResult} pass="Name is available" />
       </div>
-      <h5>Some things to try</h5>
+      <h5>Features</h5>
       <ul>
         <li>
           <strong>Type three characters then backspace:</strong> Precheck issues

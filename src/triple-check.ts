@@ -1,4 +1,4 @@
-import { CheckValueOptions } from "."
+import { TripleCheckOptions } from "."
 
 export type CheckValueResult =
   | { status: "pass" }
@@ -6,7 +6,7 @@ export type CheckValueResult =
 
 export async function tripleCheck<T>(
   value: T,
-  { precheck, check, asyncCheck }: CheckValueOptions<T>
+  { precheck, check, asyncCheck }: TripleCheckOptions<T>
 ): Promise<CheckValueResult> {
   const precheckResult = precheck ? precheck(value) : undefined
   if (typeof precheckResult === "string")
