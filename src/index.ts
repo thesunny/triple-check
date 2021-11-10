@@ -51,7 +51,7 @@ export type CheckValueOptions<T> = {
   precheck?: (value: T) => string | void
   check?: (value: T) => string | void
   asyncCheck?: (value: T) => Promise<string | void>
-  wait?: number
+  throttle?: number
 }
 
 /**
@@ -76,8 +76,8 @@ export function useTripleCheck<T>(
   {
     precheck = () => {},
     check = () => {},
-    asyncCheck = async () => {},
-    wait = 1000,
+    asyncCheck,
+    throttle: wait = 1000,
   }: CheckValueOptions<T>
 ): UseTripleCheckResult {
   const ref = useRef<{
@@ -101,6 +101,7 @@ export function useTripleCheck<T>(
 
   const throttledAsyncCheck = useCallback(
     debounce(async (value: T) => {
+      if (asyncCheck == null) return
       const asyncResponse = await asyncCheck(value)
       /**
        * If the `lastValue` is not the same as the `value` used to call this
@@ -121,7 +122,9 @@ export function useTripleCheck<T>(
    * other checks.
    */
   const checkResult = check(value)
+  console.log(1)
   if (!pass(checkResult)) {
+    console.log(2)
     ref.current.lastValue = value
     return { status: "fail", message: checkResult }
   }
@@ -146,13 +149,18 @@ export function useTripleCheck<T>(
     }
   }
 
-  if (value !== ref.current.lastValue) {
-    if (asyncCheckResponse.status !== "waiting") {
-      setAsyncCheckResponse({ status: "waiting" })
+  /**
+   */
+  if (asyncCheck) {
+    if (value !== ref.current.lastValue) {
+      if (asyncCheckResponse.status !== "waiting") {
+        setAsyncCheckResponse({ status: "waiting" })
+      }
+      throttledAsyncCheck(value)
     }
-    throttledAsyncCheck(value)
+  } else {
+    return { status: "pass" }
   }
-
   ref.current.lastValue = value
 
   return asyncCheckResponse
