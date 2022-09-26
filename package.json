@@ -1,6 +1,6 @@
 {
   "name": "triple-check",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "author": "Sunny Hirai <thesunny@gmail.com>",
   "license": "MIT",
   "main": ".dist/src/index.js",
