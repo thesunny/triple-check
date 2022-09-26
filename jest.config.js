@@ -6,4 +6,10 @@ module.exports = {
    */
   preset: "ts-jest",
   testEnvironment: "node",
+  /**
+   * Map paths from `tsconfig.json` in Jest
+   */
+  moduleNameMapper: {
+    "^~/(.*)$": "<rootDir>/$1",
+  },
 }

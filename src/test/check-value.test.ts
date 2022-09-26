@@ -1,5 +1,4 @@
-import { TripleCheckOptions } from "~/src"
-import { tripleCheck } from ".."
+import { TripleCheckOptions, tripleCheck } from "~/src"
 
 export const checkAppNameOptions: TripleCheckOptions<string> = {
   precheck(name) {
