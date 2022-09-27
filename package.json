@@ -1,18 +1,14 @@
 {
   "name": "triple-check",
-  "version": "0.1.13",
-  "author": "Sunny Hirai <thesunny@gmail.com>",
+  "version": "0.1.14",
   "license": "MIT",
-  "main": ".dist/cjs/src/index.js",
-  "types": ".dist/cjs/src/index.d.ts",
+  "author": "Sunny Hirai <thesunny@gmail.com>",
   "files": [
     ".dist/**/*"
   ],
-  "dependencies": {
-    "lodash": "^4.17.21",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
-  },
+  "main": ".dist/src/index.js",
+  "module": ".dist/mjs/src/index.js",
+  "types": ".dist/src/index.d.ts",
   "devDependencies": {
     "@types/jest": "^27",
     "@types/lodash": "^4.14.176",
@@ -38,6 +34,11 @@
     "type-fest": "^2.5.2",
     "typescript": "^4.8.3"
   },
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
   "scripts": {
     "build": "rm -rf ./.dist/ && tsc -p tsconfig.ts-build.json && echo 'Finished Building'",
     "prepublish": "yarn build && yarn version --patch && echo '\"npm publish --access=public\" to publish to npm'",
@@ -58,7 +59,9 @@
     "lint:prettier": "prettier --check \"**/*.{css,md,js,jsx,json,ts,tsx}\"",
     "lint:eslint": "eslint .",
     "lint:tsc": "tsc --build ./ --force",
+    "--- npm": "# build npm",
+    "build:npm": "rm -rf ./.dist/ && tsc -p tsconfig.ts-build.json && echo 'Finished Building'",
+    "publish:npm": "yarn lint && yarn test:once && yarn build:npm && yarn publish || echo '\"npm publish --access=public' to publish to npm",
     "-- end": "# end"
-  },
-  "module": ".dist/mjs/src/index.js"
+  }
 }
