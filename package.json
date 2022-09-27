@@ -1,6 +1,6 @@
 {
   "name": "triple-check",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "license": "MIT",
   "author": "Sunny Hirai <thesunny@gmail.com>",
   "files": [
@@ -58,7 +58,7 @@
     "lint:eslint": "eslint .",
     "lint:tsc": "tsc --build ./ --force",
     "--- npm": "# build npm",
-    "build:npm": "rm -rf ./.dist/ && tsc -p tsconfig.ts-build.json && echo 'Finished Building'",
+    "build:npm": "rm -rf ./.dist/ && tsc -p tsconfig.tsc.json",
     "publish:npm": "yarn lint && yarn test:once && yarn build:npm && yarn publish || echo '\"npm publish --access=public' to publish to npm",
     "-- end": "# end"
   }
