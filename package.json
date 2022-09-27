@@ -1,10 +1,10 @@
 {
   "name": "triple-check",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "author": "Sunny Hirai <thesunny@gmail.com>",
   "license": "MIT",
-  "main": ".dist/src/index.js",
-  "types": ".dist/src/index.d.ts",
+  "main": ".dist/cjs/src/index.js",
+  "types": ".dist/cjs/src/index.d.ts",
   "files": [
     ".dist/**/*"
   ],
@@ -14,15 +14,15 @@
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.23",
+    "@types/jest": "^27",
     "@types/lodash": "^4.14.176",
     "@types/node": "^18.7.23",
     "@types/react": "^17.0.34",
     "@types/react-dom": "^17.0.11",
     "delay": "^5.0.0",
-    "jest": "^27.0.6",
+    "jest": "^27",
     "next": "^12.0.3",
-    "ts-jest": "^27.0.3",
+    "ts-jest": "^27",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.1.0",
     "type-fest": "^2.5.2",
@@ -34,6 +34,10 @@
     "--- test": "#",
     "test:watch": "jest --watch",
     "--- start": "#",
-    "start:dev": "next dev"
-  }
+    "start:dev": "next dev",
+    "-- preset": "# Run preset from @thesunny/presets",
+    "preset": "ts-node --project node_modules/@thesunny/presets/tsconfig.ts-node.json node_modules/@thesunny/presets/bin/index.ts",
+    "-- end": "# end"
+  },
+  "module": ".dist/mjs/src/index.js"
 }
