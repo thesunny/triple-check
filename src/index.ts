@@ -74,8 +74,12 @@ export type TripleCheckOptions<T> = {
 export function useTripleCheck<T>(
   value: T,
   {
-    precheck = () => {},
-    check = () => {},
+    precheck = () => {
+      /* noop */
+    },
+    check = () => {
+      /* noop */
+    },
     asyncCheck,
     throttle = 250,
   }: TripleCheckOptions<T>

@@ -3,7 +3,7 @@ import Head from "next/head"
 import { useState } from "react"
 import { UseTripleCheckResult, useTripleCheck } from "~/src"
 
-export default function () {
+export default function Index() {
   const [name, setName] = useState("")
   const checkNameResult = useTripleCheck(name, {
     precheck(name) {
@@ -26,6 +26,7 @@ export default function () {
         <link
           rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          // eslint-disable-next-line no-secrets/no-secrets
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
           crossOrigin="anonymous"
         />
